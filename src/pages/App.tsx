@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useAppContext from "../hooks/useAppContext";
 import api from "./../services/api";
 import DisplayNumber from "../components/DisplayNumber";
+import { ico_refresh } from "../components/Icons";
 import "./styles.css";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [inputError, setInputError] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  console.log(randomNumber);
   useEffect(() => {
     getRandomNumber();
   }, []);
@@ -192,7 +194,8 @@ function App() {
         {statusGeral.StatusMsg === "WINNER" ||
         statusGeral.StatusMsg === "ERROR" ? (
           <button className="btn-new-match" onClick={handleReload}>
-            NOVA PARTIDA
+            <i className="btn-new-match-icon">{ico_refresh}</i>
+            <span className="btn-new-match-text">NOVA PARTIDA</span>
           </button>
         ) : (
           ""

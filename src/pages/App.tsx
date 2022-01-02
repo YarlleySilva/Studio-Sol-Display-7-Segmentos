@@ -79,7 +79,6 @@ function App() {
   }, [statusGeral.StatusMsg]);
 
   const disableInputAndButton = () => {
-    console.log("DisableButton", statusGeral);
     if (inputDisable.current && btnDisable.current) {
       inputDisable.current.disabled = true;
       btnDisable.current.disabled = true;
@@ -91,12 +90,11 @@ function App() {
   };
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // setInputValue(e.target.value.replace(/\D/g, "")); //Deixa só digitar Numeros positivos no Input
-    setInputValue(e.target.value.replace(/\D/g, ""));
+    setInputValue(e.target.value.replace(/\D/g, "")); //Deixa só digitar Numeros positivos no Input
 
     setStatusGeral({
       ...statusGeral,
-      ValueInput: e.target.value.replace(/\D/g, ""),
+      ValueInput: e.target.value.replace(/\D/g, ""), //Deixa só digitar Numeros positivos no Input
     });
   };
 
@@ -104,7 +102,6 @@ function App() {
     e.preventDefault();
 
     if (statusGeral.ValueInput && inputValue) {
-      console.log("HandleSubmit", statusGeral);
       setInputError(false);
       setInputValue("");
 
@@ -155,9 +152,6 @@ function App() {
 
     return null;
   };
-
-  console.log("RN", randomNumber);
-  console.log("funfou", statusGeral);
 
   return (
     <div className="container">

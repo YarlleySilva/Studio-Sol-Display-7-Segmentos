@@ -17,7 +17,7 @@
     .header-title {
       font-family: "Montserrat", sans-serif;
       font-weight: bold;
-      font-size: 24px;
+      font-size: 36px;
       line-height: 29px;
       letter-spacing: -1px;
       background-image: linear-gradient(#ef6c00, #db6300);
@@ -26,13 +26,21 @@
       -webkit-text-fill-color: transparent;
       -moz-text-fill-color: transparent;
       padding-bottom: 12px;
+
+      @media screen and (max-width: 767px) {
+        font-size: 24px;
+      }
     }
 
     .header-divider {
       height: 1px;
       background-color: #cfcfcf;
-      width: 170px;
+      width: 255px;
       margin-bottom: 50px;
+
+      @media screen and (max-width: 767px) {
+        width: 205px;
+      }
     }
   }
 

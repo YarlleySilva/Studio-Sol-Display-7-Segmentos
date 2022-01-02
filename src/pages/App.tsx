@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import useAppContext from "../hooks/useAppContext";
 import api from "./../services/api";
 import DisplayNumber from "../components/DisplayNumber";
+import DisplayMessage from "../components/DisplayMessage";
 import { ico_refresh } from "../components/Icons";
 import "./styles.css";
 
@@ -15,7 +16,6 @@ function App() {
   const [inputError, setInputError] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
-  console.log(randomNumber);
   useEffect(() => {
     getRandomNumber();
   }, []);
@@ -55,21 +55,6 @@ function App() {
     convertToDisplayNumber();
   }, [statusGeral.StatusMsg]);
 
-  const messageDisplay = (status: string) => {
-    switch (status) {
-      case "HIGHER":
-        return <span className="message-higher">É maior</span>;
-      case "LOWER":
-        return <span className="message-lower">É menor</span>;
-      case "WINNER":
-        return <span className="message-win">Você acertou!!!</span>;
-      case "ERROR":
-        return <span className="message-error">Erro</span>;
-      default:
-        return "";
-    }
-  };
-
   //Desabilita Input e Button se houver erro ou vencedor
   useEffect(() => {
     if (
@@ -87,6 +72,8 @@ function App() {
     }
   };
 
+  //Aplicação pequena então poderia utilizar sem problemas o simples location.reload();
+  //Aplicações maiories, sempre utilizar os Hooks, useState e UseEffect
   const handleReload = () => {
     window.location.reload();
   };
@@ -113,6 +100,7 @@ function App() {
     setInputError(true);
   };
 
+  //Compara o valor Random da API com o digitado no INPUT
   const compareValueInputWithRandom = () => {
     if (randomNumber) {
       if (randomNumber > Number(statusGeral.ValueInput)) {
@@ -163,7 +151,7 @@ function App() {
       </header>
 
       <section className="section-message-display">
-        {messageDisplay(statusGeral.StatusMsg)}
+        <DisplayMessage statusMsg={statusGeral.StatusMsg} />
       </section>
 
       <section className="section-display-number">
